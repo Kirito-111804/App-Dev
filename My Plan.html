@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        
+        <div>
+            <ul class="Menu">
+                <li><a href="Homepage.html">HOME</a></li>
+                <li><a href="Tracker.html">TRACKER</a></li>
+                <li> <a href="About.html">ABOUT US</a></li>
+                <li><a href="Contact.html">CONTACT</a></li>
+
+            </ul>
+        </div>
+    </header>
+
+    <main>
+
+
+        <h1>My Plan</h1>
+        <table>
+            <tr>
+                <th>Category</th>
+                <th>Exercise</th>
+                <th>Duration</th>
+                <th>Edit</th>
+                <th>Delete</th>
+
+            </tr>
+
+            <tr>
+                <td>
+                    <select name="Category" id="category">
+                        <option value="">Select a category</option>
+                        <option value="Endurance">Endurance</option>
+                        <option value="Strength">Strength</option>
+                        <option value="Flexibility">Flexibility</option>
+                        <option value="Cardio">Cardio</option>
+                    </select>
+                </td>
+                <td>
+                    <select id="exercise" name="exercise">
+                        <option value="">Select an exercise</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="date" id="duration" name="duration">
+                </td>
+
+                <td>
+                    <button>Edit</button>
+                </td>
+                <td>
+                    <button>Delete</button>
+                </td>
+            </tr>
+        </table>
+        <button id="addRow">Add Row</button>
+
+    </main>
+
+
+
+</body>
+<script src="script.js"></script>
+
+</html>
