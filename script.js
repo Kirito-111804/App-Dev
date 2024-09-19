@@ -4,11 +4,11 @@ const exerciseSelect = document.getElementById('exercise');
 
 
 const exerciseTypes = {
-    "Endurance": ["Running", "Swimming", "Cycling"],
-    "Strength": ["Weightlifting", "Bodyweight exercises", "Yoga"],
-    "Balance": ["Tai Chi", "Pilates", "Yoga"],
-    "Flexibility": ["Stretching", "Yoga", "Pilates"],
-    "Cardio": ["Running", "Swimming", "Cycling"]
+    "Endurance": ["Select an exercise","Running", "Swimming", "Cycling"],
+    "Strength": ["Select an exercise","Weightlifting", "Bodyweight exercises", "Yoga"],
+    "Balance": ["Select an exercise","Tai Chi", "Pilates", "Yoga"],
+    "Flexibility": ["Select an exercise","Stretching", "Yoga", "Pilates"],
+    "Cardio": ["Select an exercise","Running", "Swimming", "Cycling"]
 };
 
 function populateExercises() {
@@ -199,4 +199,8 @@ menuLinks.forEach((link) => {
         mainContent.innerHTML = html;
       });
   });
+});
+
+document.getElementById('new-log-btn').addEventListener('click', function() {
+    document.getElementById('new-log-form').style.display = 'block';
 });
