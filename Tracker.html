@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Exercise Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="Tracker">
+        <header>
+            <div>
+                <ul class="Menu">
+                    <li><a href="Homepage.html">HOME</a></li>
+                    <li><a href="Tracker.html">TRACKER</a></li>
+                    <li><a href="About.html">ABOUT US</a></li>
+                    <li><a href="Contact.html">CONTACT</a></li>
+                </ul>
+            </div>
+        </header>
+        <br><br>
+        <main>
+            <div class="container">
+                <div class="left-column">
+                    <div id="log-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>TYPES</th>
+                                    <th>SETS</th>
+                                    <th>REPS</th>
+                                    <th>DURATION</th>
+                                    <th>DUE</th>
+                                    <th>CREATED</th>
+                                    <th>STATUS</th>
+                                    <th>DELETE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Exercise logs will be added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="right-column">
+                <section class="add-exercise">
+                    <h2>ADD AN EXERCISE</h2>
+                    <div class="Form">
+                        <form id="exercise-form">
+                            <div class="Category">
+                                <label for="category">Category:</label>
+                                <select name="category" id="category">
+                                    <option value="">Select a category</option>
+                                    <option value="Endurance">Endurance</option>
+                                    <option value="Strength">Strength</option>
+                                    <option value="Flexibility">Flexibility</option>
+                                    <option value="Cardio">Cardio</option>
+                                </select>
+                            </div>
+                            <label for="exercise">EXERCISE:</label>
+                            <select id="exercise" name="exercise">
+                                <option value="">Select an exercise</option>
+                            </select>
+                            <br>
+                            <label for="duration">DURATION:</label>
+                            <input type="date" id="duration" name="duration">
+                            <br>
+                            <div class="Sets-Reps">
+                                <label for="sets">Sets:</label>
+                                <input type="number" id="sets" name="sets" min="1" max="5">
+                                <label for="reps">Reps:</label>
+                                <input type="number" id="reps" name="reps" min="1" max="15">
+                            </div>
+                            <br>
+                            <button type="reset">RESET</button>
+                            <button type="submit">SAVE</button>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+        </main>
+        <script src="script.js"></script>
+    </div>
+</body>
+
+</html>

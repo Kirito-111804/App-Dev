@@ -1,0 +1,211 @@
+body {
+    background-color: black;
+    text-align: center;
+}
+
+h1 {
+    color: white;
+    font-size: 50px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+h2 {
+    color: white;
+    font-size: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    bottom: 0;
+    margin: auto;
+    text-align: center;
+}
+
+p {
+    color: white;
+    font-size: 20px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1em solid black;
+}
+
+a:hover {
+    background-color: lightgray;
+    color: white;
+}
+
+.Menu {
+    color: brown;
+    font-size: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    list-style-type: none;
+    position: fixed;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul>li {
+    display: inline-block;
+    margin: 10px 20px;
+}
+
+ul>li>a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    position: relative;
+}
+
+ul>li>a::after {
+    content: '';
+    width: 100%;
+    height: 3px;
+    background-color: crimson;
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    transition: 0.5s;
+}
+
+ul>li>a:hover {
+    color: crimson;
+}
+
+ul>li>a:hover::after {
+    width: 100%;
+}
+
+.Homepage {
+    background-image: url("images/1.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+.Tracker {
+    background-image: url("images/3.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+}
+
+.Contact {
+    background-image: url("images/2.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+}
+
+.About {
+    background-image: url("images/4.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+}
+
+.Category {
+    color: brown;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+    text-align: center;
+    align-content: center;
+}
+
+.Sets-Reps {
+    justify-content: space-between;
+    align-items: justify;
+}
+
+
+
+.Form {
+    color: brown;
+    align-content: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+    border: 5px solid black;
+    border-radius: 10px;
+    padding: 20px;
+    margin: auto;
+
+
+}
+
+
+table,
+tr,
+th,
+td {
+    border: 5px solid gray;
+    border-collapse: collapse;
+    padding: 10px 15px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    align-content: center;
+}
+
+td {
+    background-color: white;
+    color: black;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+    text-align: center;
+    font-weight: bold;
+}
+
+th {
+    background-color: #f0f0f0;
+}
+
+table {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.left-column {
+    width: 30%;
+    padding: 20px;
+    border-radius: 10px;
+    margin-left: 50px;
+    border-width: medium;
+    text-align: center;
+}
+
+.right-column {
+    width: 30%;
+    margin:auto
+    
+}
+
+#log-container {
+    height: 100%;
+    position-visibility: hidden;
+
+}
