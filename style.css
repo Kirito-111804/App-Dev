@@ -1,30 +1,27 @@
 body {
     background-color: black;
-    
-
+    text-align: center;
 }
 
 h1 {
     color: white;
     font-size: 50px;
     font-family: 'Courier New', Courier, monospace;
-
 }
 
 h2 {
     color: white;
-    text-align: right;
-    margin-right: 23%;
     font-size: 30px;
     font-family: 'Courier New', Courier, monospace;
-
+    bottom: 0;
+    margin: auto;
+    text-align: center;
 }
 
 p {
     color: white;
     font-size: 20px;
     font-family: 'Courier New', Courier, monospace;
-
 }
 
 header {
@@ -33,13 +30,11 @@ header {
     left: 0;
     width: 100%;
     padding: 1em solid black;
-
 }
 
 a:hover {
     background-color: lightgray;
     color: white;
-
 }
 
 .Menu {
@@ -50,7 +45,6 @@ a:hover {
     list-style-type: none;
     position: fixed;
 }
-
 
 ul {
     list-style-type: none;
@@ -85,7 +79,6 @@ ul>li>a::after {
 
 ul>li>a:hover {
     color: crimson;
-
 }
 
 ul>li>a:hover::after {
@@ -100,7 +93,14 @@ ul>li>a:hover::after {
     height: 100vh;
     width: 100vw;
     overflow-x: hidden;
+}
 
+.Tracker {
+    background-image: url("images/3.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
 }
 
 .Contact {
@@ -111,49 +111,6 @@ ul>li>a:hover::after {
     width: 100vw;
 }
 
-.Tracker {
-    background-image: url("images/3.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 100vh;
-    width: 100vw;
-
-}
-
-.Sets-Reps {
-    justify-content: space-between;
-}
-
-.Category {
-    color: brown;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 30px;
-    text-align: center;
-    align-content: center;
-
-}
-
-.Form {
-    color: brown;
-    align-content:center;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 30px;
-    text-align: center;
-    border: 5px solid black;
-    border-radius: 10px;
-    float: right;
-    margin-right: 20%;
-
-}
-
-.Sets-Reps {
-    justify-content: space-between;
-    align-items: justify;
-}
-
-
-    
-
 .About {
     background-image: url("images/4.png");
     background-size: cover;
@@ -162,29 +119,93 @@ ul>li>a:hover::after {
     width: 100vw;
 }
 
-.MyPlan{
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 100vh;
-    width: 100vw;
+.Category {
+    color: brown;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+    text-align: center;
+    align-content: center;
 }
 
-table, tr, th, td {
+.Sets-Reps {
+    justify-content: space-between;
+    align-items: justify;
+}
+
+
+
+.Form {
+    color: brown;
+    align-content: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+    border: 5px solid black;
+    border-radius: 10px;
+    padding: 20px;
+    margin: auto;
+
+
+}
+
+
+table,
+tr,
+th,
+td {
     border: 5px solid gray;
     border-collapse: collapse;
     padding: 10px 15px;
-    margin-top: 150px;
-    margin-bottom: 100px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    align-content: center;
+}
+
+td {
+    background-color: white;
+    color: black;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15px;
+    text-align: center;
+    font-weight: bold;
 }
 
 th {
-    background-color: #f0f0f0; /* Add a light gray background to the header row */
+    background-color: #f0f0f0;
 }
 
-.scrollable-content {
-    padding-top: 60px; /* Add some padding to account for the fixed header */
-    overflow-y:auto; /* Add this to enable scrolling on the content */
-    height: calc(100vh - 60px); /* Set the height to the remaining space */
+table {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.left-column {
+    width: 30%;
+    padding: 20px;
+    border-radius: 10px;
+    margin-left: 50px;
+    border-width: medium;
+    text-align: center;
+}
+
+.right-column {
+    width: 30%;
+    margin:auto
+    
+}
+
+#log-container {
+    height: 100%;
+    position-visibility: hidden;
+
+}

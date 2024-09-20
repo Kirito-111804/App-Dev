@@ -1,206 +1,111 @@
+// Get the elements
+const logContainer = document.getElementById('log-container');
+const exerciseForm = document.getElementById('exercise-form');
 const categorySelect = document.getElementById('category');
 const exerciseSelect = document.getElementById('exercise');
+const durationInput = document.getElementById('duration');
+const setsInput = document.getElementById('sets');
+const repsInput = document.getElementById('reps');
 
+// Add event listeners
+exerciseForm.addEventListener('submit', saveExercise);
 
+// Function to add a new log
+function addNewLog(category, exercise, sets, reps, duration) {
+    // Check if any input is empty
+    const isEmpty = !category || !exercise || !sets || !reps || !duration;
 
-const exerciseTypes = {
-    "Endurance": ["Select an exercise","Running", "Swimming", "Cycling"],
-    "Strength": ["Select an exercise","Weightlifting", "Bodyweight exercises", "Yoga"],
-    "Balance": ["Select an exercise","Tai Chi", "Pilates", "Yoga"],
-    "Flexibility": ["Select an exercise","Stretching", "Yoga", "Pilates"],
-    "Cardio": ["Select an exercise","Running", "Swimming", "Cycling"]
-};
+    let status;
+    if (isEmpty) {
+        status = 'Pending';
+    } else {
+        const dueDate = new Date(duration); // Use the duration input as the due date
+        const today = new Date();
 
-function populateExercises() {
-    const selectedCategory = categorySelect.value;
-    const exerciseOptions = exerciseTypes[selectedCategory];
+        // Set the status based on the due date
+        status = today < dueDate ? 'Ongoing' : 'Done';
+    }
 
-    // Clear existing options
+    // Create a new table row
+    const newRow = document.createElement('tr');
+    newRow.innerHTML = `
+        <td></td>
+        <td>${category || 'N/A'}</td>
+        <td>${exercise || 'N/A'}</td>
+        <td>${sets || 'N/A'}</td>
+        <td>${reps || 'N/A'}</td>
+        <td>${duration || 'N/A'}</td>
+        <td>${getCurrentDate()}</td>
+        <td>${status}</td>
+        <td><button class="delete">DELETE</button></td>
+    `;
+
+    // Add the new row to the table
+    logContainer.querySelector('tbody').appendChild(newRow);
+
+    // Add delete functionality to the new button
+    const deleteButton = newRow.querySelector('.delete');
+    deleteButton.addEventListener('click', function() {
+        newRow.remove();
+    });
+}
+
+// Function to save an exercise
+function saveExercise(event) {
+    event.preventDefault();
+
+    // Get the form data
+    const category = categorySelect.value;
+    const exercise = exerciseSelect.value;
+    const duration = durationInput.value; // This should be the due date
+    const sets = setsInput.value;
+    const reps = repsInput.value;
+
+    // Add a new log to the table
+    addNewLog(category, exercise, sets, reps, duration);
+
+    // Reset the form
+    exerciseForm.reset(); // This line resets the form without affecting the table
+}
+
+// Function to get the current date in YYYY-MM-DD format
+function getCurrentDate() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
+// Function to populate exercise options based on category
+function populateExerciseOptions(category) {
+    const exerciseOptions = getExerciseOptions(category);
+
+    // Clear the exercise select options
     exerciseSelect.innerHTML = '';
 
-    // Add options based on the selected category
-    if (exerciseOptions) {
-        exerciseOptions.forEach(exercise => {
-            const option = document.createElement('option');
-            option.value = exercise;
-            option.text = exercise;
-            exerciseSelect.appendChild(option);
-        });
-    }
+    // Add the exercise options to the select
+    exerciseOptions.forEach(option => {
+        const newOption = document.createElement('option');
+        newOption.value = option;
+        newOption.textContent = option;
+        exerciseSelect.appendChild(newOption);
+    });
 }
 
-categorySelect.addEventListener('change', populateExercises);
-
-const table = document.querySelector('table');
-const addRowButton = document.getElementById('addRow');
-
-addRowButton.addEventListener('click', () => {
-    const row = table.insertRow(-1);
-    const cell1 = row.insertCell(0);
-    const cell2 = row.insertCell(1);
-    const cell3 = row.insertCell(2);
-    const cell4 = row.insertCell(3);
-
-
-    // Clone the select elements
-
-    const categorySelectClone = categorySelect.cloneNode(true);
-    const exerciseSelectClone = exerciseSelect.cloneNode(true);
-    const durationInputClone = document.getElementById('duration').cloneNode(true);
-
-    cell1.appendChild(categorySelectClone);
-    cell2.appendChild(exerciseSelectClone);
-    cell3.appendChild(durationInputClone);
-
-
-    const categorySelectCloneEvent = categorySelectClone.querySelector('select');
-    const exerciseSelectCloneEvent = exerciseSelectClone.querySelector('select');
-
-    categorySelectCloneEvent.addEventListener('change', () => {
-        const selectedCategory = categorySelectCloneEvent.value;
-        const exerciseOptions = exerciseTypes[selectedCategory];
-
-        // Clear existing options
-        exerciseSelectCloneEvent.innerHTML = '';
-
-        // Add options based on the selected category
-        if (exerciseOptions) {
-            exerciseOptions.forEach(exercise => {
-                const option = document.createElement('option');
-                option.value = exercise;
-                option.text = exercise;
-                exerciseSelectCloneEvent.appendChild(option);
-            });
-        }
-    });
-});
-// Add event listeners for the edit and delete buttons
-const editButtons = document.querySelectorAll('.edit-btn');
-const deleteButtons = document.querySelectorAll('.delete-btn');
-
-editButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-        // TO DO: implement edit functionality
-        console.log('Edit button clicked');
-    });
-});
-
-deleteButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-        // TO DO: implement delete functionality
-        console.log('Delete button clicked');
-    });
-});
-
-// Get the table
-const historyTable = document.getElementById('history-table');
-
-// Create an array to store the history data
-let historyData = [];
-
-// Add an event listener to the "SAVE" button
-document.getElementById('save-btn').addEventListener('click', () => {
-    // Get the form data
-    const category = document.getElementById('category').value;
-    const exercise = document.getElementById('exercise').value;
-    const duration = document.getElementById('duration').value;
-
-    // Create a new history item
-    const historyItem = {
-        category: category,
-        exercise: exercise,
-        duration: duration
+// Function to get exercise options for a category
+function getExerciseOptions(category) {
+    const exerciseOptions = {
+        'Endurance': ["Select an exercise", 'Running', 'Swimming', 'Cycling'],
+        'Strength': ["Select an exercise", 'Weightlifting', 'Bodyweight', 'Resistance Band'],
+        'Flexibility': ["Select an exercise", 'Yoga', 'Pilates', 'Stretching'],
+        'Cardio': ["Select an exercise", "Jumping jacks", "Jogging", "HighKnee"]
     };
 
-    // Add the history item to the array
-    historyData.push(historyItem);
-
-    // Clear the form
-    document.getElementById('category').value = '';
-    document.getElementById('exercise').value = '';
-    document.getElementById('duration').value = '';
-
-    // Update the history table
-    updateHistoryTable();
-});
-
-// Function to update the history table
-function updateHistoryTable() {
-    // Clear the table
-    historyTable.innerHTML = '';
-
-    // Create the table header
-    const tableHeader = `
-    <tr>
-      <th>Category</th>
-      <th>Exercise</th>
-      <th>Duration</th>
-      <th>Edit</th>
-      <th>Delete</th>
-    </tr>
-  `;
-    historyTable.innerHTML = tableHeader;
-
-    // Create the table rows
-    historyData.forEach((historyItem, index) => {
-        const tableRow = `
-      <tr>
-        <td>${historyItem.category}</td>
-        <td>${historyItem.exercise}</td>
-        <td>${historyItem.duration}</td>
-        <td><button class="edit-btn" onclick="editHistoryItem(${index})">Edit</button></td>
-        <td><button class="delete-btn" onclick="deleteHistoryItem(${index})">Delete</button></td>
-      </tr>
-    `;
-        historyTable.innerHTML += tableRow;
-    });
+    return exerciseOptions[category] || [];
 }
 
-// Function to edit a history item
-function editHistoryItem(index) {
-    // Get the history item
-    const historyItem = historyData[index];
-
-    // Populate the form with the history item data
-    document.getElementById('category').value = historyItem.category;
-    document.getElementById('exercise').value = historyItem.exercise;
-    document.getElementById('duration').value = historyItem.duration;
-}
-
-// Function to delete a history item
-function deleteHistoryItem(index) {
-    // Remove the history item from the array
-    historyData.splice(index, 1);
-
-    // Update the history table
-    updateHistoryTable();
-}
-
-// Get the menu links
-const menuLinks = document.querySelectorAll('.Menu a');
-
-// Add an event listener to each menu link
-menuLinks.forEach((link) => {
-  link.addEventListener('click', (e) => {
-    // Prevent the default link behavior
-    e.preventDefault();
-
-    // Get the link's href attribute
-    const href = link.getAttribute('href');
-
-    // Load the corresponding HTML content
-    fetch(href)
-      .then((response) => response.text())
-      .then((html) => {
-        // Get the main content element
-        const mainContent = document.querySelector('main');
-
-        // Update the main content with the new HTML
-        mainContent.innerHTML = html;
-      });
-  });
-});
-
-document.getElementById('new-log-btn').addEventListener('click', function() {
-    document.getElementById('new-log-form').style.display = 'block';
+// Add event listener to category select
+categorySelect.addEventListener('change', event => {
+    populateExerciseOptions(event.target.value);
 });
